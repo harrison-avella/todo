@@ -1,0 +1,26 @@
+package com.ha.todo.todo.controller;
+
+
+import java.util.List;
+
+import com.ha.todo.todo.domain.Item;
+import com.ha.todo.todo.service.TodoService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+
+public class TodoController {
+
+    @Autowired
+    TodoService todoService;
+
+    @GetMapping("/api/todoItems")
+    public ResponseEntity<?> findAll() {
+        List<Item> itemList = todoService.findAll();
+        return ResponseEntity.ok(itemList);
+    }
+}
