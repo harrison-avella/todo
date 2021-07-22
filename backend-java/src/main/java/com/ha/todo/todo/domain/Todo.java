@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "todoTable")
+@Entity(name = "todo")
 public class Todo {
 
     private static final long serialVersionUID = 1L;
@@ -25,6 +25,7 @@ public class Todo {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
     private String task;
+    @Column(name = "is_done", nullable = false)
     private Boolean isDone;
 
 
