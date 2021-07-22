@@ -3,7 +3,7 @@ package com.ha.todo.todo.controller;
 
 import java.util.List;
 
-import com.ha.todo.todo.domain.Item;
+import com.ha.todo.todo.domain.Todo;
 import com.ha.todo.todo.service.TodoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class TodoController {
 
     @GetMapping("/api/todoItems")
     public ResponseEntity<?> findAll() {
-        List<Item> itemList = todoService.findAll();
+        List<Todo> itemList = todoService.findAll();
         return ResponseEntity.ok(itemList);
     }
 }

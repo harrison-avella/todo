@@ -2,8 +2,8 @@ package com.ha.todo.todo.service;
 
 import java.util.List;
 
-import com.ha.todo.todo.domain.Item;
-import com.ha.todo.todo.repository.TodoRepository;
+import com.ha.todo.todo.domain.Todo;
+import com.ha.todo.todo.repository.ITodoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 public class TodoService {
 
     @Autowired
-    private TodoRepository todoRepository;
+    private ITodoRepository todoRepository;
     
-    public List<Item> findAll() {
+    public List<Todo> findAll() {
         return todoRepository.findAll();
     }
 }
