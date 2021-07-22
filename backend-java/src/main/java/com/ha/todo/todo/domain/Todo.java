@@ -1,5 +1,7 @@
 package com.ha.todo.todo.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +18,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "todo")
-public class Todo {
+public class Todo implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
     private String task;
     @Column(name = "is_done", nullable = false)
