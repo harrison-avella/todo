@@ -28,10 +28,18 @@ public class TodoController {
         List<Todo> itemList = todoService.findAll();
         return ResponseEntity.ok(itemList);
     }
+
+    @GetMapping("/todoItems/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") Long id) {
+        Todo item = todoService.findById(id).get();
+        return ResponseEntity.ok(item);
+    }
     
     @PutMapping("/todoItems/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Todo todo) {
-        Todo updatedTodo = todoService.update(id, todo);
-        return ResponseEntity.ok(updatedTodo);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Todo todo) {
+        Todo selectedItem = todoService.findById(id).get();
+        selectedItem.setIsDone(todo.getIsDone());
+        Todo updatedItem = todoService.update(selectedItem);
+        return ResponseEntity.ok(updatedItem);         
     }
 }

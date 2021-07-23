@@ -10,22 +10,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TodoService {
+public class TodoService implements ITodoService {
 
     @Autowired
     private ITodoRepository todoRepository;
 
+    @Override
     public List<Todo> findAll() {
         return todoRepository.findAll();
     }
 
-    public Todo update(Long id, Todo todo) {
-        Optional<Todo> todoOptional = todoRepository.findAll().stream().filter(t -> t.getId().equals(id)).findAny();
+    @Override
+    public Optional<Todo> findById(Long id) {
+        return todoRepository.findById(id);
+    }
+
+    @Override
+    public Todo save(Todo todo) {        
+        return todoRepository.save(todo);
+    }
+
+    public Todo update(Todo todo) {
+        return todoRepository.save(todo);
+        
+        /*Optional<Todo> todoOptional = todoRepository.findAll().stream().filter(t -> t.getId().equals(id)).findAny();
         if (todoOptional.isPresent()) {
             Todo todoItem = todoOptional.get();
             todoItem.setIsDone(todo.getIsDone());
             return todoItem;
         }
-        return null;
+        return null;*/
     }
+
+    @Override
+    public void delete(Long id) {
+        // TODO Auto-generated method stub
+        
+    }
+
+   
 }
