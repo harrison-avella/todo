@@ -23,7 +23,7 @@ function App() {
         ? todoItems.map((todoItem) => {
             return <TodoItem key={todoItem.id} data={todoItem}/>;
           })
-        : "loading ..."}
+        : "No se encontro datos"}
     </div>
   );
 }
