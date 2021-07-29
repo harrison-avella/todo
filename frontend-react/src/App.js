@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import TodoItem from "./components/todoItem";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
-function App() {
+export default function App() {
   const [todoItems, setTodoItems] = useState(null);
 
   useEffect(() => {
@@ -17,20 +17,23 @@ function App() {
         });
     }
   }, [todoItems]);
-  return (
-    <>
-      <div>
-        <Button>Agregar tarea</Button>
-      </div>
-      <div>
-        {todoItems
-          ? todoItems.map((todoItem) => {
-              return <TodoItem key={todoItem.id} data={todoItem} />;
-            })
-          : "No se encontro datos"}
-      </div>
-    </>
-  );
-}
 
-export default App;
+  function onAddTodoItem() {
+    fetch("http://localhost:8080/api/todoItems");
+
+    return (
+      <>
+        <div>
+          <Button onclick={onAddTodoItem}>Agregar tarea</Button>
+        </div>
+        <div>
+          {todoItems
+            ? todoItems.map((todoItem) => {
+                return <TodoItem key={todoItem.id} data={todoItem} />;
+              })
+            : "No se encontro datos"}
+        </div>
+      </>
+    );
+  }
+}
